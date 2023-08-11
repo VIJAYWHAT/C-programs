@@ -13,7 +13,7 @@ int main(){
 
 char sub[10][10] = {"Tamil","English","Maths","Science","Social"};
 struct student s1;//object for students;
-int i,m,a,s=0,n,k,c1 = 0;
+int i,a,n,b;
 char names[10][50];
 
 
@@ -39,7 +39,6 @@ for(i=0;i<n;i++)
         printf("Enter %s Mark:",sub[j]);
         scanf("%d",&marks[i][j]);
         tot_mark[i] += marks[i][j];
-        s++;
     }
 
 }
@@ -55,15 +54,14 @@ printf("=====================\n");
 printf("Students List: \n");
 printf("=====================\n");
 
-for(k=0;k<n;k++){
+for(a=0;a<n;a++){
 
-    for(a=0;a<5;a++){
-       printf("student %d %s Mark:%d\n",k+1,sub[a],marks[k][a]);
+    for(b=0;b<5;b++){
+       printf("student %d %s Mark:%d\n",a+1,sub[b],marks[a][b]);
 
     }
-
     printf("-------------------\n");
-    printf("Total Mark: %d/500\n",tot_mark[k]);
+    printf("Total Mark: %d/500\n",tot_mark[a]);
     printf("-------------------\n");
 
 }
