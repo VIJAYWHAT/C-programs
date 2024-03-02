@@ -11,7 +11,7 @@ char name[10][10];
 
 int main(){
 
-char sub[5] = {"Tamil","English","Maths","Science","Social"};
+char sub[] = {"Tamil","English","Maths","Science","Social"};
 struct student s1;//object for students;
 int i,a,n,b,k;
 char names[10][50];

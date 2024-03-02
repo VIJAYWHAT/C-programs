@@ -12,7 +12,7 @@ char name[10][10 ];
 int main(){
 
 char sub[10][10] = {"Tamil","English","Maths","Science","Social"};
-struct student s1;//object for students;;;;;;;';;;;;;;l-
+struct student s1;//object for students;
 int i,m;
 char names[10][50];
 int marks[100];
@@ -20,7 +20,6 @@ int tot_mark=0;
 
 printf("Enter number of Students: ");
 scanf("%d",&s1.num);
-
 getchar();
 
 for(i=0;i<s1.num;i++){
@@ -33,6 +32,8 @@ for(i=0;i<s1.num;i++){
         printf("Enter %s %s Mark:",s1.name[i],sub[j]);
         scanf("%d",&marks[j]);
     }
+    getchar();
+
 
 }
 for(i=0;i<5;i++){

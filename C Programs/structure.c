@@ -6,6 +6,13 @@ struct myStructure {
   char myLetter;
 };
 
+void printing(){
+  struct myStructure s1;
+
+  printf("the Number: %d",s1.myNum);
+  
+}
+
 int main() {
   // Create a structure variable of myStructure called s1
   struct myStructure s1;
@@ -18,5 +25,8 @@ int main() {
   printf("My number: %d\n", s1.myNum);
   printf("My letter: %c\n", s1.myLetter);
 
+  printing();
+
   return 0;
 }
+
