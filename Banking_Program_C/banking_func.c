@@ -47,10 +47,10 @@ void login()
 
             if (strcmp(users[userIndex].password, password) == 0) // strcmp == 0 used to compare two string
             {  
-                system("cls");
-                printf("User Logged Successful\n");
-                bool userLogged = true;
-                userDetails(userLogged,userIndex);
+                system("cls"); // Clear the terminal
+                printf("User Logged Successful\n"); // Print msg to ensure the user logged
+                bool userLogged = true; // assign userLogged into true to check the user 
+                userDetails(userLogged,userIndex); // call the userDetails function to move further option
             }
             else
             {
@@ -82,7 +82,7 @@ void userDetails(bool UserLogged, int UserIndex){ // Function with parameter and
         int option;
         char cont;
 
-        UserOptions();
+        UserOptions(); // call UserOptions to print the Options
 
         printf("Enter your choice: ");
         scanf("%d", &option);
@@ -90,7 +90,7 @@ void userDetails(bool UserLogged, int UserIndex){ // Function with parameter and
         switch (option)
         {
         case 1:
-            printf("\nYour Balance is: %.2f\n", balanceCheck(users[UserIndex].account_no));
+            printf("\nYour Balance is: %.2f\n", balanceCheck(users[UserIndex].account_no)); // De
             break;
         case 2:
            UserProfile(UserIndex);
@@ -210,12 +210,12 @@ void printStatment(int ac_no)
     char filename[Length];
     char statement[MaxLength];
     
-    sprintf(filename, "./ac_statements/%d.txt", ac_no);
+    sprintf(filename, "./ac_statements/%d.txt", ac_no); // concat the string and int
 
     FILE *st = fopen(filename, "r"); // also we directly open the file in the FILE declaration
     printf("\n");
 
-    if(st == NULL) perror("No statement Available");
+    if(st == NULL) perror("No statement Available"); // Check if the file exists or not
     
     while(fgets(statement, sizeof(statement), st)){
         printf("%s", statement);
