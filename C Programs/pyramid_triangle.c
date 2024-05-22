@@ -14,11 +14,7 @@ void main(){
         s = (i*2) - 1;
 
     for(k=1;k<=s;k++){
-
-        if(t<10)
             printf(" *");
-        else
-            printf("* ");
     }
     printf("\n\n");
     }
