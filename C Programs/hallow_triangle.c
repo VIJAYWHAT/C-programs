@@ -1,19 +1,24 @@
 #include <stdio.h>
-// #include "lab.c"
 
-void main(){
+int main()
+{
+	int i, space, n = 5, j = 0;
 
-int a,b;
+	for (i = 0; i < n - 1; i++) {
 
-int sum(int num1, int num2){
-    return num1 + num2;
-}
-
-printf("Enter two numbers: ");
-scanf("%d %d",&a,&b);
-
-int result = sum(a,b);
-
-printf("The result is: %d", result);
-
+		for (space = 1; space < n - i; space++) {
+			printf(" ");
+		}
+		for (j = 0; j <= 2 * i; j++) {
+			if (j == 0 || j == 2 * i)
+				printf("*");
+			else
+				printf(" ");
+		}
+		printf("\n");
+	}
+	for (i = 0; i < 2 * n - 1; i++) {
+		printf("*");
+	}
+	return 0;
 }
