@@ -46,7 +46,10 @@ void printDiamond(int n)
 
 // Driver code 
 int main() 
-{ 
-	printDiamond(8); 
+{   
+    int n;
+    printf("enter the rows: ");
+    scanf("%d", &n);
+	printDiamond(n); 
 	return 0; 
 }
