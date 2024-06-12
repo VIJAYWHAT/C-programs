@@ -7,16 +7,14 @@ int main(){
     printf("enter the number :");
     scanf("%d",&n);
 
-
-
     for(i=1;i<=n;i++){
 
         fact = fact * i;
 
     }
-    printf("factorial:%d \n",fact);
-
-    if(n < 0){ //for only check the number is negative
+    if(n < 0){ 
         printf("number is negative");
     }
+    printf("factorial:%d \n",fact);
+
 }
