@@ -54,10 +54,10 @@ int main()
       if(n > 0)
 	        printDiamond(n); 
         else
-            printf("Invalid input");
+            printf("Invalid input... Enter the number greater than 1");
     }
     else
-        printf("Invalid input");
+        printf("Invalid input... Enter the valid INTEGER");
   
 	return 0; 
 }
