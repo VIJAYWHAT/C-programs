@@ -49,7 +49,15 @@ int main()
 {   
     int n;
     printf("enter the rows: ");
-    scanf("%d", &n);
-	printDiamond(n); 
+    if (scanf("%d", &n) == 1) {
+
+      if(n > 0)
+	        printDiamond(n); 
+        else
+            printf("Invalid input");
+    }
+    else
+        printf("Invalid input");
+  
 	return 0; 
 }
