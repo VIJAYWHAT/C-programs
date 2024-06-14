@@ -1,4 +1,3 @@
-// C program to print full 
 // diamond shape pyramid 
 #include <stdio.h> 
 
