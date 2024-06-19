@@ -11,8 +11,7 @@ int main() {
  while(copy > 0){
      
      rev = rev*10;
-     rev = rev + (copy%10);
-     
+     rev = rev + (copy%10); 
      copy /= 10;
      
  }

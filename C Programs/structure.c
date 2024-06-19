@@ -21,6 +21,7 @@ int main() {
   s1.myNum = 16;
   s1.myLetter = 'V';
 
+  
   // Print values
   printf("My number: %d\n", s1.myNum);
   printf("My letter: %c\n", s1.myLetter);

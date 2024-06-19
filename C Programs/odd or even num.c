@@ -9,9 +9,7 @@ int main() {
 
     if(num%2 == 0 ){
         printf("even number");
-
     }
-
     else{
         printf("odd number");
     }
