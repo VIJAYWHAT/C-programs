@@ -1,27 +1,17 @@
 #include <stdio.h>
 
-int main(){
+int main(void) {
+   
+    FILE *file;
+    char c;
+    file = fopen("test.txt","a");
 
+    // fputs("\nI am Vj!",file);
+    fprintf(file,"\nHi vijay,How can i help you ?");
 
-int i,n,s=0;
+    printf("file writed");
 
-printf("enter the number:");
-scanf("%d",&n);
+    fclose(file);
 
- for(i=0;i<=n;i++){
- 
- s = s+i;
- }
-        printf("%d",s);
-
-    }
-
-
-
-
-// syntax of for loop
-
-// for(initialization,condition,updation){
-    // statements...
-// }
-
+    return 0;
+}
