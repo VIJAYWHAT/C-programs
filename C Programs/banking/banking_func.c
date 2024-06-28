@@ -5,6 +5,7 @@
 
 #define Row 3
 #define Col 50
+#define Length 50
 
 void welcome(){
     printf("===========================================\n");
@@ -13,28 +14,58 @@ void welcome(){
 
 }
 
+struct Users {
+    char user_name[Length];
+    char password[Length];
+};
+
 bool login(){
+    struct Users users[] = {
+        {"Vijay", "vijay@123"},
+        {"Gopi", "gopi@123"},
+        {"Ram", "ram@123"},
+        {"Hari", "hari@123"}
+    };
 
-    char Users[][Col] = {"Vijay", "Gopi", "Ram", "Hari"};
+    char re;
     char username[50];
+    char password[50];
+    int userIndex;
+    int usercount = sizeof(users) / sizeof(users[0]);
+    // printf("Total users: %d\n",usercount);
 
-    int usercount = sizeof(Users) / sizeof(Users[0]);
-    printf("Total users: %d",usercount);
-    printf("Enter the user name: ");
-    scanf("%s",&username);
+    do {
+        printf("Enter the user name: ");
+        scanf("%s", username);
 
-    bool userfound = false;
-    for(int i = 0; i < Row; i++ ){
-        if(strcmp(username, Users[i]) == 0){
-            userfound = true;
-            break;
+        bool userFound = false;
+        for (int i = 0; i < usercount; i++) {
+            if (strcmp(username, users[i].user_name) == 0) {
+                userFound = true;
+                userIndex = i;
+                break;
+            }
         }
-    }
-    if(userfound){
-            printf("User is valid");
-    }
-    else{
-    printf("User is invalid");
-    }
+        
+        if (userFound) {
+            printf("User Found\n");
+            printf("Enter the password: ");
+            scanf("%s", &password);
 
+            if (strcmp(users[userIndex].password, password) == 0) {
+                printf("User Logged Successful\n");
+            }
+            else{
+                printf("Password Wrong!\n");
+            }
+
+        } else {
+            printf("User Not Found\n");
+        }
+
+        printf("Continue... (Y/N): ");
+        while ((getchar()) != '\n'); 
+        scanf("%c", &re);
+
+    } while (re != 'n' && re != 'N');
 }
