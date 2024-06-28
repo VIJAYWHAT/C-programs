@@ -15,20 +15,20 @@ void welcome(){
 
 bool login(){
 
-    char string[Row][Col] = {"Vijay", "Gopi", "Ram"};
+    char Users[][Col] = {"Vijay", "Gopi", "Ram", "Hari"};
     char username[50];
 
+    int usercount = sizeof(Users) / sizeof(Users[0]);
+    printf("Total users: %d",usercount);
     printf("Enter the user name: ");
     scanf("%s",&username);
 
     bool userfound = false;
     for(int i = 0; i < Row; i++ ){
-        if(strcmp(username, string[i]) == 0){
+        if(strcmp(username, Users[i]) == 0){
             userfound = true;
             break;
         }
-       
-
     }
     if(userfound){
             printf("User is valid");
@@ -37,13 +37,4 @@ bool login(){
     printf("User is invalid");
     }
 
-}
-
-
-void main(){
-
-    welcome();
-
-    login();
-    
 }
