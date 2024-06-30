@@ -7,6 +7,9 @@
 #define Col 50
 #define Length 50
 
+void login();
+void userDetails(bool UserLogged, int UserIndex);
+
 void welcome(){
     printf("===========================================\n");
     printf("\t Welcome to Banking App \n");
@@ -17,21 +20,22 @@ void welcome(){
 struct Users {
     char user_name[Length];
     char password[Length];
-    char account_number[Length];
     int balance;
 };
 
-bool login(){
-    struct Users users[] = {
-        {"Vijay", "vijay@123"},
-        {"Gopi", "gopi@123"},
-        {"Ram", "ram@123"},
-        {"Hari", "hari@123"}
-    };
+struct Users users[] = {
+        {"Vijay", "vijay@123", 120000},
+        {"Gopi", "gopi@123", 15000},
+        {"Ram", "ram@123", 2000000},
+        {"Hari", "hari@123", 10000}
+};
+
+void login(){
+    
 
     char re;
     char username[50];
-    char password[50];
+    char password[50]; 
     int userIndex;
     int usercount = sizeof(users) / sizeof(users[0]);
     int TryPass = 0;
@@ -58,6 +62,8 @@ bool login(){
 
             if (strcmp(users[userIndex].password, password) == 0) {
                 printf("User Logged Successful\n");
+                bool userLogged = true;
+                userDetails(userLogged,userIndex);
             }
             else{
                 printf("Password Wrong!\n");
@@ -65,6 +71,7 @@ bool login(){
                 if(TryPass == 4){
                     printf("You have exceeded the number of attempts!!!\n");
                     exit(1);
+                    
                 }
                 goto password;
             }
@@ -77,11 +84,27 @@ bool login(){
                 goto login;
             else
                 exit(1);
+            
+        } 
+
+}
+
+void userDetails(bool UserLogged, int UserIndex){
+    if(UserLogged){
+        int option;
+
+        printf("\n1. Check Bank Balance.\n");
+        printf("2. View User Details.\n");
+        printf("3. Withdraw Money.\n");
+        printf("4. Deposit Money.\n");
+
+        printf("Enter Option: ");
+        scanf("%d", &option);
+
+        if(option == 1){
+            printf("Your Balance is: %d\n", users[UserIndex].balance);
         }
-
-        // printf("Continue... (Y/N): ");
-        // while ((getchar()) != '\n'); 
-        // scanf("%c", &re);
-
+    }
     
+
 }
