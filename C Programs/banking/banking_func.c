@@ -17,6 +17,8 @@ void welcome(){
 struct Users {
     char user_name[Length];
     char password[Length];
+    char account_number[Length];
+    int balance;
 };
 
 bool login(){
@@ -32,9 +34,10 @@ bool login(){
     char password[50];
     int userIndex;
     int usercount = sizeof(users) / sizeof(users[0]);
+    int TryPass = 0;
     // printf("Total users: %d\n",usercount);
 
-    do {
+    login:
         printf("Enter the user name: ");
         scanf("%s", username);
 
@@ -46,9 +49,10 @@ bool login(){
                 break;
             }
         }
-        
+
         if (userFound) {
             printf("User Found\n");
+        password:
             printf("Enter the password: ");
             scanf("%s", &password);
 
@@ -57,15 +61,27 @@ bool login(){
             }
             else{
                 printf("Password Wrong!\n");
+                TryPass++;
+                if(TryPass == 4){
+                    printf("You have exceeded the number of attempts!!!\n");
+                    exit(1);
+                }
+                goto password;
             }
 
         } else {
             printf("User Not Found\n");
+            printf("Retry (Y/N): ");
+            scanf(" %c", &re);
+            if(re != 'n' && re != 'N')
+                goto login;
+            else
+                exit(1);
         }
 
-        printf("Continue... (Y/N): ");
-        while ((getchar()) != '\n'); 
-        scanf("%c", &re);
+        // printf("Continue... (Y/N): ");
+        // while ((getchar()) != '\n'); 
+        // scanf("%c", &re);
 
-    } while (re != 'n' && re != 'N');
+    
 }
