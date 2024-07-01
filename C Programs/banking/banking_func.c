@@ -25,15 +25,13 @@ struct Users {
 };
 
 struct Users users[] = {
-        {027101234, "Vijay", "vijay@123", 120000},
-        {027102345, "Gopi", "gopi@123", 15000},
-        {027103456, "Ram", "ram@123", 2000000},
-        {027104567, "Hari", "hari@123", 10000}
+        {127101234, "Vijay", "vijay@123", 120000},
+        {127102345, "Gopi", "gopi@123", 15000},
+        {127103456, "Ram", "ram@123", 2000000},
+        {127104567, "Hari", "hari@123", 10000}
 };
 
 void login(){
-    
-
     char re;
     char username[50];
     char password[50]; 
@@ -133,6 +131,21 @@ void userDetails(bool UserLogged, int UserIndex){
             goto cont_check;
         }
     }
+}
+
+void logout(){
+    char check;
+    printf("\nYou have successfully logged out.\n");
+    printf("Login(Y) / Exit(N): ");
+    scanf("%c", &check);
     
+    if(check == 'Y' || check == 'y')
+        login();
+    else{
+        printf("Thank you for using our services.\n");
+        exit(1);
+    }
+
+
 
 }
