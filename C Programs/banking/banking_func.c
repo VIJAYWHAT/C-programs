@@ -9,6 +9,8 @@
 
 void login();
 void userDetails(bool UserLogged, int UserIndex);
+void logout();
+
 
 void welcome(){
     printf("===========================================\n");
@@ -41,7 +43,7 @@ void login(){
     // printf("Total users: %d\n",usercount);
 
     login:
-        printf("Enter the user name: ");
+        printf("\nEnter the user name: ");
         scanf("%s", username);
 
         bool userFound = false;
@@ -125,7 +127,7 @@ void userDetails(bool UserLogged, int UserIndex){
         if(cont == 'C' || cont == 'c')
             userDetails(UserLogged,UserIndex);
         else if(cont == 'L' || cont == 'l')
-            exit(1);
+            logout();
         else{
             printf("Invalid Input\n");
             goto cont_check;
@@ -135,17 +137,17 @@ void userDetails(bool UserLogged, int UserIndex){
 
 void logout(){
     char check;
-    printf("\nYou have successfully logged out.\n");
-    printf("Login(Y) / Exit(N): ");
+
+    printf("\nYou have successfully logged out.");
+    printf("\nLogin(Y) / Exit(N): ");
+    while ((getchar()) != '\n'); // Clear the input buffer before using scanf
     scanf("%c", &check);
     
-    if(check == 'Y' || check == 'y')
+    if(check == 'Y' || check == 'y'){
         login();
+    }
     else{
         printf("Thank you for using our services.\n");
         exit(1);
     }
-
-
-
 }
