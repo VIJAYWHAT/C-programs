@@ -18,16 +18,17 @@ void welcome(){
 }
 
 struct Users {
+    int account_no;
     char user_name[Length];
     char password[Length];
     int balance;
 };
 
 struct Users users[] = {
-        {"Vijay", "vijay@123", 120000},
-        {"Gopi", "gopi@123", 15000},
-        {"Ram", "ram@123", 2000000},
-        {"Hari", "hari@123", 10000}
+        {027101234, "Vijay", "vijay@123", 120000},
+        {027102345, "Gopi", "gopi@123", 15000},
+        {027103456, "Ram", "ram@123", 2000000},
+        {027104567, "Hari", "hari@123", 10000}
 };
 
 void login(){
@@ -92,6 +93,7 @@ void login(){
 void userDetails(bool UserLogged, int UserIndex){
     if(UserLogged){
         int option;
+        char cont;
 
         printf("\n1. Check Bank Balance.\n");
         printf("2. View User Details.\n");
@@ -102,7 +104,33 @@ void userDetails(bool UserLogged, int UserIndex){
         scanf("%d", &option);
 
         if(option == 1){
-            printf("Your Balance is: %d\n", users[UserIndex].balance);
+            printf("\nYour Balance is: %d\n", users[UserIndex].balance);
+        }
+        else if(option == 2){
+            printf("\n===================\n");
+            printf("***** Profile *****\n");
+            printf("===================\n\n");
+
+            printf("User Name: %s\n", users[UserIndex].user_name);
+            printf("Account Number: %d\n", users[UserIndex].account_no);
+            printf("User Balance: %d\n", users[UserIndex].balance);
+
+        }
+        else{
+            printf("Invalid Option\n");
+        }
+
+    cont_check:
+        printf("\nContinue (C)/ Logout(L): ");
+        scanf(" %c", &cont);
+
+        if(cont == 'C' || cont == 'c')
+            userDetails(UserLogged,UserIndex);
+        else if(cont == 'L' || cont == 'l')
+            exit(1);
+        else{
+            printf("Invalid Input\n");
+            goto cont_check;
         }
     }
     
