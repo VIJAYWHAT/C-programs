@@ -11,6 +11,7 @@ void login();
 void userDetails(bool UserLogged, int UserIndex);
 void UserProfile(int UserIndex);
 void UserOptions();
+void printStatment(int ac_no);
 void logout();
 
 void welcome(){
@@ -107,6 +108,9 @@ void userDetails(bool UserLogged, int UserIndex){
         else if(option == 2){
            UserProfile(UserIndex);
         }
+        else if(option == 3){
+            printStatment(users[UserIndex].account_no);
+        }
         else{
             printf("Invalid Option\n");
         }
@@ -165,3 +169,22 @@ void logout(){
 }
 
 
+void printStatment(int ac_no) {
+
+    char filename[100];
+    char statement[255];
+    
+    sprintf(filename, "%d.txt", ac_no);
+
+    FILE *st = fopen(filename, "r");
+    printf("\n");
+
+    if(st == NULL)
+        perror("No statement Available");
+    
+
+    while(fgets(statement, sizeof(statement), st)){
+        printf("%s", statement);
+    }
+    
+}
