@@ -9,8 +9,9 @@
 
 void login();
 void userDetails(bool UserLogged, int UserIndex);
+void UserProfile(int UserIndex);
+void UserOptions();
 void logout();
-
 
 void welcome(){
     printf("===========================================\n");
@@ -23,7 +24,7 @@ struct Users {
     int account_no;
     char user_name[Length];
     char password[Length];
-    int balance;
+    float balance;
 };
 
 struct Users users[] = {
@@ -95,26 +96,16 @@ void userDetails(bool UserLogged, int UserIndex){
         int option;
         char cont;
 
-        printf("\n1. Check Bank Balance.\n");
-        printf("2. View User Details.\n");
-        printf("3. Withdraw Money.\n");
-        printf("4. Deposit Money.\n");
+        UserOptions();
 
-        printf("Enter Option: ");
+        printf("Enter your choice: ");
         scanf("%d", &option);
 
         if(option == 1){
-            printf("\nYour Balance is: %d\n", users[UserIndex].balance);
+            printf("\nYour Balance is: %.2f\n", users[UserIndex].balance);
         }
         else if(option == 2){
-            printf("\n===================\n");
-            printf("***** Profile *****\n");
-            printf("===================\n\n");
-
-            printf("User Name: %s\n", users[UserIndex].user_name);
-            printf("Account Number: %d\n", users[UserIndex].account_no);
-            printf("User Balance: %d\n", users[UserIndex].balance);
-
+           UserProfile(UserIndex);
         }
         else{
             printf("Invalid Option\n");
@@ -125,7 +116,7 @@ void userDetails(bool UserLogged, int UserIndex){
         scanf(" %c", &cont);
 
         if(cont == 'C' || cont == 'c')
-            userDetails(UserLogged,UserIndex);
+            userDetails(UserLogged,UserIndex); // Recursion Function
         else if(cont == 'L' || cont == 'l')
             logout();
         else{
@@ -133,6 +124,27 @@ void userDetails(bool UserLogged, int UserIndex){
             goto cont_check;
         }
     }
+}
+
+void UserOptions(){
+
+    printf("\n1. Check Bank Balance.\n");
+    printf("2. View User Details.\n");
+    printf("3. Check account statement\n");
+    printf("4. Withdraw Money.\n");
+    printf("5. Deposit Money.\n");
+
+}
+
+void UserProfile(int UserIndex){
+
+    printf("\n===================\n");
+    printf("***** Profile *****\n");
+    printf("===================\n\n");
+
+    printf("User Name: %s\n", users[UserIndex].user_name);
+    printf("Account Number: %d\n", users[UserIndex].account_no);
+    printf("User Balance: %.2f\n", users[UserIndex].balance);
 }
 
 void logout(){
