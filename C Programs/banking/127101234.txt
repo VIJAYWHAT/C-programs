@@ -1,6 +1,6 @@
-Date	    Description	     Transaction Type	Amount (Rs)	Balance (Rs)
-----------------------------------------------------------------
-2024-01-01	Initial Deposit Credit 	       10000	    10000
-2024-01-02	Withdrawal  Debit              500	    9500
-2024-01-03	Deposit     Credit             1000	    10500
-2024-01-05	Deposit	    Credit             2000	    12500
+Date    	Description	   Transaction Type   Amount (Rs)   Balance (Rs)
+------------------------------------------------------------------------
+2024-01-01	Initial Deposit     Credit 	       10000	    10000
+2024-01-02	Withdrawal          Debit              500	    9500
+2024-01-03	Deposit             Credit             1000	    10500
+2024-01-05	Deposit	            Credit             2000	    12500
