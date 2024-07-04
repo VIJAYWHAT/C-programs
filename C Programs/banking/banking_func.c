@@ -22,18 +22,17 @@ void welcome(){
 
 }
 
-struct Users {
+struct Users { // create a structure for store the user credential
     int account_no;
     char user_name[Length];
     char password[Length];
-    float balance;
 };
 
-struct Users users[] = {
-        {127101234, "Vijay", "vijay@123", 120000},
-        {127102345, "Gopi", "gopi@123", 15000},
-        {127103456, "Ram", "ram@123", 2000000},
-        {127104567, "Hari", "hari@123", 10000}
+struct Users users[] = { // call the struct to assign the values
+        {127101234, "Vijay", "vijay@123"},
+        {127102345, "Gopi", "gopi@123"},
+        {127103456, "Ram", "ram@123"},
+        {127104567, "Hari", "hari@123"}
 };
 
 void login(){
@@ -41,17 +40,17 @@ void login(){
     char username[50];
     char password[50]; 
     int userIndex;
-    int usercount = sizeof(users) / sizeof(users[0]);
+    int usercount = sizeof(users) / sizeof(users[0]); // calculate the usercount
     int TryPass = 0;
     // printf("Total users: %d\n",usercount);
 
-    login:
+    login: // create label for goto
         printf("\nEnter the user name: ");
         scanf("%s", username);
 
         bool userFound = false;
         for (int i = 0; i < usercount; i++) {
-            if (strcmp(username, users[i].user_name) == 0) {
+            if (strcmp(username, users[i].user_name) == 0) { // users[i].user_name used to call the username in the index i 
                 userFound = true;
                 userIndex = i;
                 break;
@@ -64,20 +63,20 @@ void login(){
             printf("Enter the password: ");
             scanf("%s", &password);
 
-            if (strcmp(users[userIndex].password, password) == 0) {
+            if (strcmp(users[userIndex].password, password) == 0) { // strcmp == 0 used to compare two string 
                 printf("User Logged Successful\n");
                 bool userLogged = true;
                 userDetails(userLogged,userIndex);
             }
             else{
                 printf("Password Wrong!\n");
-                TryPass++;
+                TryPass++; // TryPass variable used to count the given wrong passwords 
                 if(TryPass == 4){
                     printf("You have exceeded the number of attempts!!!\n");
-                    exit(1);
+                    exit(1); // used to terminate the entire program
                     
                 }
-                goto password;
+                goto password; // used to go for the particular label line 
             }
 
         } else {
@@ -149,7 +148,7 @@ void UserProfile(int UserIndex){
 
     printf("User Name: %s\n", users[UserIndex].user_name);
     printf("Account Number: %d\n", users[UserIndex].account_no);
-    printf("User Balance: %.2f\n", users[UserIndex].balance);
+    printf("User Balance: %.2f\n", balanceCheck(users[UserIndex].account_no));
 }
 
 void logout(){
@@ -171,33 +170,35 @@ void logout(){
 
 float balanceCheck(int ac_no){
 
-    FILE *fp;
+    FILE *fp; // create a fp FILE pointer to access the files
     char line[100];
-    char *lastWord;
+    char *balanceStr;
     char *token;
     char filename[50];
     float balance;
 
-    sprintf(filename, "%d.txt",ac_no); 
+    sprintf(filename, "%d.txt",ac_no); // concat the string and int
 
 
-    fp = fopen(filename, "r");
+    fp = fopen(filename, "r"); // open the file and assign the address in fp
 
-    if (fp == NULL)
-        perror("Account not found");
+    if (fp == NULL) // check the file NULL or not
+        perror("Account not found"); // display error messages
         
-    while (fgets(line, 100, fp) != NULL) {
-        token = strtok(line, " \t\n");
+    while (fgets(line, 200, fp) != NULL) {   // Read each line until the end of file
 
-        while (token != NULL) {
-            lastWord = token;
-            token = strtok(NULL, " \t\n");
+        // Split the line into tokens separated by whitespace
+        token = strtok(line, " \t\n"); // used to tokenize (split) strings into smaller tokens based on a delimiter
+    
+        while (token != NULL) {  // Traverse to the last token in the line
+            balanceStr = token;  // Update lastWord to the current token because we give the balance in last
+            token = strtok(NULL, " \t\n"); // Get the next token
         }
     }
 
-    fclose(fp);
+    fclose(fp); // Close the file
 
-    balance = atof(lastWord);
+    balance = atof(balanceStr); // convert ascii into float (atoi - convert into int) 
 
     return balance;
 
@@ -210,7 +211,7 @@ void printStatment(int ac_no) {
     
     sprintf(filename, "%d.txt", ac_no);
 
-    FILE *st = fopen(filename, "r");
+    FILE *st = fopen(filename, "r"); // also we directly open the file in the FILE declaration
     printf("\n");
 
     if(st == NULL)
