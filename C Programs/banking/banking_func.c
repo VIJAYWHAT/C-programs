@@ -12,6 +12,7 @@ void userDetails(bool UserLogged, int UserIndex);
 void UserProfile(int UserIndex);
 void UserOptions();
 void printStatment(int ac_no);
+float balanceCheck(int ac_no);
 void logout();
 
 void welcome(){
@@ -103,7 +104,7 @@ void userDetails(bool UserLogged, int UserIndex){
         scanf("%d", &option);
 
         if(option == 1){
-            printf("\nYour Balance is: %.2f\n", users[UserIndex].balance);
+            printf("\nYour Balance is: %.2f\n", balanceCheck(users[UserIndex].account_no));
         }
         else if(option == 2){
            UserProfile(UserIndex);
@@ -168,6 +169,39 @@ void logout(){
     }
 }
 
+float balanceCheck(int ac_no){
+
+    FILE *fp;
+    char line[100];
+    char *lastWord;
+    char *token;
+    char filename[50];
+    float balance;
+
+    sprintf(filename, "%d.txt",ac_no); 
+
+
+    fp = fopen(filename, "r");
+
+    if (fp == NULL)
+        perror("Account not found");
+        
+    while (fgets(line, 100, fp) != NULL) {
+        token = strtok(line, " \t\n");
+
+        while (token != NULL) {
+            lastWord = token;
+            token = strtok(NULL, " \t\n");
+        }
+    }
+
+    fclose(fp);
+
+    balance = atof(lastWord);
+
+    return balance;
+
+}
 
 void printStatment(int ac_no) {
 
