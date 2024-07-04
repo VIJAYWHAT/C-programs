@@ -3,10 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define Row 3
-#define Col 50
-#define Length 50
+// define constants or macros
+#define Length 55 
+#define MaxLength 255
 
+// Function Declarations
+void welcome(); 
 void login();
 void userDetails(bool UserLogged, int UserIndex);
 void UserProfile(int UserIndex);
@@ -15,13 +17,6 @@ void printStatment(int ac_no);
 float balanceCheck(int ac_no);
 void logout();
 
-void welcome(){
-    printf("===========================================\n");
-    printf("\t Welcome to Banking App \n");
-    printf("===========================================\n");
-
-}
-
 struct Users { // create a structure for store the user credential
     int account_no;
     char user_name[Length];
@@ -29,16 +24,25 @@ struct Users { // create a structure for store the user credential
 };
 
 struct Users users[] = { // call the struct to assign the values
-        {127101234, "Vijay", "vijay@123"},
-        {127102345, "Gopi", "gopi@123"},
-        {127103456, "Ram", "ram@123"},
-        {127104567, "Hari", "hari@123"}
+    {127101234, "Vijay", "vijay@123"},
+    {127102345, "Gopi", "gopi@123"},
+    {127103456, "Ram", "ram@123"},
+    {127104567, "Hari", "hari@123"}
 };
 
-void login(){
+// Function definition
+void welcome(){ 
+    printf("===========================================\n");
+    printf("\t Welcome to Banking App \n");
+    printf("===========================================\n");
+}
+
+void login()
+{
+    
     char re;
-    char username[50];
-    char password[50]; 
+    char username[Length];
+    char password[Length]; 
     int userIndex;
     int usercount = sizeof(users) / sizeof(users[0]); // calculate the usercount
     int TryPass = 0;
@@ -59,16 +63,19 @@ void login(){
 
         if (userFound) {
             printf("User Found\n");
+
         password:
             printf("Enter the password: ");
             scanf("%s", &password);
 
-            if (strcmp(users[userIndex].password, password) == 0) { // strcmp == 0 used to compare two string 
+            if (strcmp(users[userIndex].password, password) == 0) // strcmp == 0 used to compare two string
+            {  
                 printf("User Logged Successful\n");
                 bool userLogged = true;
                 userDetails(userLogged,userIndex);
             }
-            else{
+            else
+            {
                 printf("Password Wrong!\n");
                 TryPass++; // TryPass variable used to count the given wrong passwords 
                 if(TryPass == 4){
@@ -79,17 +86,18 @@ void login(){
                 goto password; // used to go for the particular label line 
             }
 
-        } else {
+        }
+
+        else {
             printf("User Not Found\n");
             printf("Retry (Y/N): ");
             scanf(" %c", &re);
+
             if(re != 'n' && re != 'N')
                 goto login;
             else
-                exit(1);
-            
-        } 
-
+                exit(1);   
+        }
 }
 
 void userDetails(bool UserLogged, int UserIndex){
@@ -102,18 +110,18 @@ void userDetails(bool UserLogged, int UserIndex){
         printf("Enter your choice: ");
         scanf("%d", &option);
 
-        if(option == 1){
+        if(option == 1)
             printf("\nYour Balance is: %.2f\n", balanceCheck(users[UserIndex].account_no));
-        }
-        else if(option == 2){
+        
+        else if(option == 2)
            UserProfile(UserIndex);
-        }
-        else if(option == 3){
+
+        else if(option == 3)
             printStatment(users[UserIndex].account_no);
-        }
-        else{
+        
+        else
             printf("Invalid Option\n");
-        }
+        
 
     cont_check:
         printf("\nContinue (C)/ Logout(L): ");
@@ -121,7 +129,7 @@ void userDetails(bool UserLogged, int UserIndex){
 
         if(cont == 'C' || cont == 'c')
             userDetails(UserLogged,UserIndex); // Recursion Function
-        else if(cont == 'L' || cont == 'l')
+        else if(cont == 'L' || cont == 'l') 
             logout();
         else{
             printf("Invalid Input\n");
@@ -152,6 +160,7 @@ void UserProfile(int UserIndex){
 }
 
 void logout(){
+    
     char check;
 
     printf("\nYou have successfully logged out.");
@@ -171,10 +180,10 @@ void logout(){
 float balanceCheck(int ac_no){
 
     FILE *fp; // create a fp FILE pointer to access the files
-    char line[100];
+    char line[MaxLength];
     char *balanceStr;
     char *token;
-    char filename[50];
+    char filename[Length];
     float balance;
 
     sprintf(filename, "%d.txt",ac_no); // concat the string and int
@@ -185,7 +194,7 @@ float balanceCheck(int ac_no){
     if (fp == NULL) // check the file NULL or not
         perror("Account not found"); // display error messages
         
-    while (fgets(line, 200, fp) != NULL) {   // Read each line until the end of file
+    while (fgets(line, MaxLength, fp) != NULL) {   // Read each line until the end of file
 
         // Split the line into tokens separated by whitespace
         token = strtok(line, " \t\n"); // used to tokenize (split) strings into smaller tokens based on a delimiter
@@ -204,20 +213,19 @@ float balanceCheck(int ac_no){
 
 }
 
-void printStatment(int ac_no) {
+void printStatment(int ac_no)
+{
 
-    char filename[100];
-    char statement[255];
+    char filename[Length];
+    char statement[MaxLength];
     
     sprintf(filename, "%d.txt", ac_no);
 
     FILE *st = fopen(filename, "r"); // also we directly open the file in the FILE declaration
     printf("\n");
 
-    if(st == NULL)
-        perror("No statement Available");
+    if(st == NULL) perror("No statement Available");
     
-
     while(fgets(statement, sizeof(statement), st)){
         printf("%s", statement);
     }
