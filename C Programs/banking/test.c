@@ -1,32 +1,18 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#define MAX_LINE_LENGTH 100
+#include <time.h>
 
 int main() {
-    FILE *fp;
-    char line[MAX_LINE_LENGTH];
-    char *lastWord;
-    char *token;
+    time_t t;
+    struct tm *tmp;
+    char buffer[80];
 
-    fp = fopen("127101234.txt", "r");
-    if (fp == NULL) {
-        perror("Error opening file");
-        return EXIT_FAILURE;
-    }
-    while (fgets(line, MAX_LINE_LENGTH, fp) != NULL) {
-        token = strtok(line, " \t\n");
+    // Get the current time
+    time(&t);
+    tmp = localtime(&t);
 
-        while (token != NULL) {
-            lastWord = token;
-            token = strtok(NULL, " \t\n");
-        }
-    }
+    // Format the date
+    strftime(buffer, sizeof(buffer), "%d-%m-%Y", tmp);
+    printf("Current date: %s\n", buffer);
 
-    fclose(fp);
-
-    printf("Last word: %s\n", lastWord);
-
-    return EXIT_SUCCESS;
+    return 0;
 }

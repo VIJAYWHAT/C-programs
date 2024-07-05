@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 // define constants or macros
 #define Length 55 
@@ -15,6 +16,8 @@ void UserProfile(int UserIndex);
 void UserOptions();
 void printStatment(int ac_no);
 float balanceCheck(int ac_no);
+void deposit(int ac_no);
+bool depositPrint(int ac_no, float amount);
 void logout();
 
 struct Users { // create a structure for store the user credential
@@ -120,6 +123,9 @@ void userDetails(bool UserLogged, int UserIndex){ // Function with parameter and
         else if(option == 3)
             printStatment(users[UserIndex].account_no);
         
+        else if(option == 4)
+            deposit(Users[UserIndex].account_no); 
+
         else
             printf("Invalid Option\n");
         
@@ -232,4 +238,61 @@ void printStatment(int ac_no)
         printf("%s", statement);
     }
     
+}
+
+void deposit(int ac_no){
+
+    float amount;
+    char confirm;
+
+    printf("Enter the amount you want to deposit: ");
+    scanf("%f", &amount);
+    system("cls");
+
+    printf("Are you sure you want to deposit %f? (y/n): ", amount);
+    scanf("%c", &confirm);
+    system("cls");
+
+    if(confirm == 'y' || confirm == 'N'){
+        
+        bool deposited = depositPrint(ac_no, amount);
+
+        if (deposited)
+            printf("Amount deposited successfully\n");
+        else
+            printf("Deposit failed\n");
+    }
+    else
+        printf("Deposit cancelled\n");
+
+}
+
+bool depositPrint(int ac_no, float amount){
+
+    char filename[Length];
+    FILE* dp;
+
+    sprintf(filename, "%d.txt", ac_no);
+
+    if(filename == NULL){
+        perror("Account not found");
+        return false;
+    }
+
+    dp = fopen(filename, "a"); // append the file
+    fputs("%s\tDeposit\tCredit\t%d" ,getCurrentDate(), amount);
+    
+    fclose(dp);
+    return true;
+
+
+}
+
+char* getCurrentDate() { // Function with return value and No Parameter
+    static char date[80];  // Static array to hold the date string
+    time_t t = time(NULL);
+    struct tm *tmp = localtime(&t);
+    
+    strftime(date, sizeof(date), "%d-%m-%Y", tmp);
+    return date;
 }

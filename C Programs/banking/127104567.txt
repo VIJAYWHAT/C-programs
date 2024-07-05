@@ -10,7 +10,7 @@ Phone: 9384560000
 ---------------------------------------------------------------------------------
 Date    	Description	   Transaction Type   Amount (Rs)   Balance (Rs)
 ---------------------------------------------------------------------------------
-2024-01-01	Initial Deposit     Credit 	       5000	    5000
-2024-01-02	Deposit             Credit             1000	    6000
-2024-01-03	Withdrawal          Debit              500	    5500
-2024-01-05	Deposit	            Credit             2000	    7500
+01-01-2024	Initial Deposit     Credit 	       5000	    5000
+02-01-2024	Deposit             Credit             1000	    6000
+03-01-2024	Withdrawal          Debit              500	    5500
+05-01-2024	Deposit	            Credit             2000	    7500
