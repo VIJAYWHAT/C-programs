@@ -31,7 +31,7 @@ struct Users users[] = { // call the struct to assign the values
 };
 
 // Function definition
-void welcome(){ 
+void welcome(){ // Function without parameter and no return value
     printf("===========================================\n");
     printf("\t Welcome to Banking App \n");
     printf("===========================================\n");
@@ -70,6 +70,7 @@ void login()
 
             if (strcmp(users[userIndex].password, password) == 0) // strcmp == 0 used to compare two string
             {  
+                system("cls");
                 printf("User Logged Successful\n");
                 bool userLogged = true;
                 userDetails(userLogged,userIndex);
@@ -100,7 +101,7 @@ void login()
         }
 }
 
-void userDetails(bool UserLogged, int UserIndex){
+void userDetails(bool UserLogged, int UserIndex){ // Function with parameter and no return value
     if(UserLogged){
         int option;
         char cont;
@@ -172,12 +173,13 @@ void logout(){
         login();
     }
     else{
+        system("cls");
         printf("Thank you for using our services.\n");
         exit(1);
     }
 }
 
-float balanceCheck(int ac_no){
+float balanceCheck(int ac_no){ // Function with parameter and return value
 
     FILE *fp; // create a fp FILE pointer to access the files
     char line[MaxLength];
@@ -187,7 +189,6 @@ float balanceCheck(int ac_no){
     float balance;
 
     sprintf(filename, "%d.txt",ac_no); // concat the string and int
-
 
     fp = fopen(filename, "r"); // open the file and assign the address in fp
 
@@ -214,8 +215,9 @@ float balanceCheck(int ac_no){
 }
 
 void printStatment(int ac_no)
-{
+{   
 
+    system("cls");
     char filename[Length];
     char statement[MaxLength];
     

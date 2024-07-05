@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include "banking_func.c"
+#include "banking_func.c" // include c files
 
 
 void main(){
 
-    welcome();
-    login();
+    welcome(); // call the welcome function from banking_func.c file
+    login(); // call the login function from banking_func.c file
     
 }
