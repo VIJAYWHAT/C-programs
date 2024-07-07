@@ -11,7 +11,7 @@ int main() {
     char filename[55];
     FILE *dp;
 
-    strcpy(filename, "127101234.txt");
+    strcpy(filename, "127103456.txt");
     int amount = 500;
     int balance = 1500;
 
@@ -37,7 +37,7 @@ void printStatment()
     
     // sprintf(filename, "%d.txt", ac_no);
 
-    FILE *st = fopen("127101234.txt", "r"); // also we directly open the file in the FILE declaration
+    FILE *st = fopen("127103456.txt", "r"); // also we directly open the file in the FILE declaration
     printf("\n");
 
     if(st == NULL) perror("No statement Available");

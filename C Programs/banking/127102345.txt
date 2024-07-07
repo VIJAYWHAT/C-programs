@@ -10,9 +10,8 @@ Phone: 9629630000
 ---------------------------------------------------------------------------------
 Date    	Description	   Transaction Type   Amount (Rs)   Balance (Rs)
 ---------------------------------------------------------------------------------
-06-02-2024	Initial Deposit     Credit 	       20000	    20000
-08-02-2024	Withdrawal          Debit              5000	    15000
-12-02-2024	Deposit             Credit             1000	    16000
-10-03-2024	Deposit	            Credit             3500	    19500
-10-03-2024	Deposit	            Debit              2000	    17500
-
+06-02-2024	Initial Deposit	    Credit		20000  	    20000
+08-02-2024	Withdrawal	    Debit		5000  	    15000
+12-02-2024	Deposit		    Credit		1000  	    16000
+10-03-2024	Deposit		    Credit		3500  	    19500
+10-03-2024	Withdrawal	    Debit		2000  	    17500
