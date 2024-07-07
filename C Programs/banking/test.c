@@ -33,8 +33,7 @@ void printStatment()
 
     system("cls");
     char filename[55];
-    char statement[100];
-    
+    char statement[100]; 
     // sprintf(filename, "%d.txt", ac_no);
 
     FILE *st = fopen("127103456.txt", "r"); // also we directly open the file in the FILE declaration

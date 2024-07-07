@@ -17,7 +17,8 @@ void UserOptions();
 void printStatment(int ac_no);
 float balanceCheck(int ac_no);
 void deposit(int ac_no);
-bool depositPrint(int ac_no, float amount);
+char*  getCurrentDate(); 
+bool depositPrint(int ac_no, int amount);
 void logout();
 
 struct Users { // create a structure for store the user credential
@@ -124,7 +125,7 @@ void userDetails(bool UserLogged, int UserIndex){ // Function with parameter and
             printStatment(users[UserIndex].account_no);
         
         else if(option == 4)
-            deposit(Users[UserIndex].account_no); 
+            deposit(users[UserIndex].account_no); 
 
         else
             printf("Invalid Option\n");
@@ -150,8 +151,8 @@ void UserOptions(){
     printf("\n1. Check Bank Balance.\n");
     printf("2. View User Details.\n");
     printf("3. Check account statement\n");
-    printf("4. Withdraw Money.\n");
-    printf("5. Deposit Money.\n");
+    printf("4. Deposit Money.\n");
+    printf("5. Withdraw Money.\n");
 
 }
 
@@ -242,22 +243,22 @@ void printStatment(int ac_no)
 
 void deposit(int ac_no){
 
-    float amount;
+    int amount;
     char confirm;
 
     printf("Enter the amount you want to deposit: ");
-    scanf("%f", &amount);
+    scanf("%d", &amount);
     system("cls");
 
-    printf("Are you sure you want to deposit %f? (y/n): ", amount);
-    scanf("%c", &confirm);
+    printf("Are you sure you want to deposit %d? (y/n): ", amount);
+    scanf(" %c", &confirm);
     system("cls");
 
     if(confirm == 'y' || confirm == 'N'){
         
         bool deposited = depositPrint(ac_no, amount);
 
-        if (deposited)
+        if(deposited)
             printf("Amount deposited successfully\n");
         else
             printf("Deposit failed\n");
@@ -267,21 +268,22 @@ void deposit(int ac_no){
 
 }
 
-bool depositPrint(int ac_no, float amount){
+bool depositPrint(int ac_no, int amount){
 
-    char filename[Length];
-    FILE* dp;
+    char filename[55];
+    FILE *dp;
 
     sprintf(filename, "%d.txt", ac_no);
 
-    if(filename == NULL){
-        perror("Account not found");
+    dp = fopen(filename, "a"); // append the file
+    if (dp == NULL) {
+        perror("Error opening file");
         return false;
     }
+    int balance = balanceCheck(ac_no) + amount;
 
-    dp = fopen(filename, "a"); // append the file
-    fputs("%s\tDeposit\tCredit\t%d" ,getCurrentDate(), amount);
-    
+    fprintf(dp, "%s\tDeposit\t\t    Credit\t\t%d  \t    %d\n", getCurrentDate(), amount, balance);
+
     fclose(dp);
     return true;
 
