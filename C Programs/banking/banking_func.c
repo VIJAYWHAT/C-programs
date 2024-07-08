@@ -276,14 +276,14 @@ void deposit(int ac_no){
 }
 
 void withdraw(int ac_no, int userIndex){
-    int amount, TryPass = 0, balance;
+    int amount, TryPass = 0;
+    float balance;
     char confirm, password[Length];
-
-
     balance = balanceCheck(ac_no);
 
 CashWithdraw:
-    printf("Your Balance is: \n");
+    system("cls");
+    printf("Your Balance is: %.2f\n", balance);
     printf("Enter the amount you want to withdraw: ");
     scanf("%d", &amount);
     system("cls");
@@ -307,11 +307,12 @@ CashWithdraw:
                     if(withdrawed)
                         printf("Withdrawal Successful\n");
                     else
-                        printf("Withdraw failed")
+                        printf("Withdraw failed");
                 }
                 else
-                {
-                    printf("Password Wrong!\n");
+                {   
+                    
+                    printf("Password Wrong! Try Again... \n\n");
                     TryPass++; // TryPass variable used to count the given wrong passwords 
                     if(TryPass == 4){
                         printf("You have exceeded the number of attempts!!!\n");
@@ -365,8 +366,8 @@ bool withdrawPrint(int ac_no, int amount){
     }
     int balance = balanceCheck(ac_no) - amount;
 
-    fprintf(dp, "%s\tWithdrawal\t\t    Debit\t\t%d  \t    %d\n", getCurrentDate(), amount, balance);
-
+    fprintf(dp, "%s\tWithdrawal\t    Debit\t\t%d  \t    %d\n", getCurrentDate(), amount, balance);
+    
     fclose(dp);
     return true;
 

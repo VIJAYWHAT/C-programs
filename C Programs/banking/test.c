@@ -21,7 +21,7 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    fprintf(dp, "%s\tDeposit\t\t    Credit\t\t%d  \t    %d\n", getCurrentDate(), amount, balance);
+    fprintf(dp, "%s\tWithdrawal\t    Debit\t\t%d  \t    %d\n", getCurrentDate(), amount, balance);
 
     fclose(dp);
     printStatment();
