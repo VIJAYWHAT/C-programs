@@ -11,14 +11,16 @@
 // Function Declarations
 void welcome(); 
 void login();
+void UserOptions();
+char* getCurrentDate();
 void userDetails(bool UserLogged, int UserIndex);
 void UserProfile(int UserIndex);
-void UserOptions();
 void printStatment(int ac_no);
 float balanceCheck(int ac_no);
 void deposit(int ac_no);
-char*  getCurrentDate(); 
+void withdraw(int ac_no, int UserIndex);
 bool depositPrint(int ac_no, int amount);
+bool withdrawPrint(int ac_no, int amount);
 void logout();
 
 struct Users { // create a structure for store the user credential
@@ -90,7 +92,6 @@ void login()
                 }
                 goto password; // used to go for the particular label line 
             }
-
         }
 
         else {
@@ -127,6 +128,9 @@ void userDetails(bool UserLogged, int UserIndex){ // Function with parameter and
         else if(option == 4)
             deposit(users[UserIndex].account_no); 
 
+        else if(option == 5)
+            withdraw(users[UserIndex].account_no, UserIndex);
+
         else
             printf("Invalid Option\n");
         
@@ -135,8 +139,10 @@ void userDetails(bool UserLogged, int UserIndex){ // Function with parameter and
         printf("\nContinue (C)/ Logout(L): ");
         scanf(" %c", &cont);
 
-        if(cont == 'C' || cont == 'c')
+        if(cont == 'C' || cont == 'c'){
+            system("cls");
             userDetails(UserLogged,UserIndex); // Recursion Function
+        }
         else if(cont == 'L' || cont == 'l') 
             logout();
         else{
@@ -147,7 +153,7 @@ void userDetails(bool UserLogged, int UserIndex){ // Function with parameter and
 }
 
 void UserOptions(){
-
+    
     printf("\n1. Check Bank Balance.\n");
     printf("2. View User Details.\n");
     printf("3. Check account statement\n");
@@ -157,7 +163,8 @@ void UserOptions(){
 }
 
 void UserProfile(int UserIndex){
-
+    
+    system("cls");
     printf("\n===================\n");
     printf("***** Profile *****\n");
     printf("===================\n\n");
@@ -177,6 +184,7 @@ void logout(){
     scanf("%c", &check);
     
     if(check == 'Y' || check == 'y'){
+        system("cls");
         login();
     }
     else{
@@ -250,11 +258,11 @@ void deposit(int ac_no){
     scanf("%d", &amount);
     system("cls");
 
-    printf("Are you sure you want to deposit %d? (y/n): ", amount);
+    printf("Are you sure want to deposit %d? (y/n): ", amount);
     scanf(" %c", &confirm);
     system("cls");
 
-    if(confirm == 'y' || confirm == 'N'){
+    if(confirm == 'y' || confirm == 'Y'){
         
         bool deposited = depositPrint(ac_no, amount);
 
@@ -265,8 +273,62 @@ void deposit(int ac_no){
     }
     else
         printf("Deposit cancelled\n");
-
 }
+
+void withdraw(int ac_no, int userIndex){
+    int amount, TryPass = 0, balance;
+    char confirm, password[Length];
+
+
+    balance = balanceCheck(ac_no);
+
+CashWithdraw:
+    printf("Your Balance is: \n");
+    printf("Enter the amount you want to withdraw: ");
+    scanf("%d", &amount);
+    system("cls");
+
+    if(amount <= balance){
+        printf("Are you sure want to withdraw %d? (y/n): ", amount);
+        scanf(" %c",&confirm);
+
+        if(confirm == 'y' || confirm == 'Y'){
+            printf("\nEnter the \"Password\" to Confirm Withdraw \n");
+        
+        password:
+                printf("Enter your password: ");
+                scanf("%s", &password);
+
+                if (strcmp(users[userIndex].password, password) == 0) // strcmp == 0 used to compare two string
+                {
+                    system("cls");
+                    bool withdrawed = withdrawPrint(ac_no, amount);
+
+                    if(withdrawed)
+                        printf("Withdrawal Successful\n");
+                    else
+                        printf("Withdraw failed")
+                }
+                else
+                {
+                    printf("Password Wrong!\n");
+                    TryPass++; // TryPass variable used to count the given wrong passwords 
+                    if(TryPass == 4){
+                        printf("You have exceeded the number of attempts!!!\n");
+                        exit(1); // used to terminate the entire program
+                        
+                    }
+                    goto password; // used to go for the particular label line 
+                }
+        }
+        else
+            printf("Deposit cancelled\n");
+    }
+    else
+        printf("Insufficient Balance\n");
+    
+}
+
 
 bool depositPrint(int ac_no, int amount){
 
@@ -287,6 +349,26 @@ bool depositPrint(int ac_no, int amount){
     fclose(dp);
     return true;
 
+}
+
+bool withdrawPrint(int ac_no, int amount){
+
+    char filename[55];
+    FILE *dp;
+
+    sprintf(filename, "%d.txt", ac_no);
+
+    dp = fopen(filename, "a"); // append the file
+    if (dp == NULL) {
+        perror("Error opening file");
+        return false;
+    }
+    int balance = balanceCheck(ac_no) - amount;
+
+    fprintf(dp, "%s\tWithdrawal\t\t    Debit\t\t%d  \t    %d\n", getCurrentDate(), amount, balance);
+
+    fclose(dp);
+    return true;
 
 }
 
