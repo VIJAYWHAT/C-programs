@@ -87,25 +87,28 @@ void userDetails(bool UserLogged, int UserIndex){ // Function with parameter and
         printf("Enter your choice: ");
         scanf("%d", &option);
 
-        if(option == 1)
+        switch (option)
+        {
+        case 1:
             printf("\nYour Balance is: %.2f\n", balanceCheck(users[UserIndex].account_no));
-        
-        else if(option == 2)
+            break;
+        case 2:
            UserProfile(UserIndex);
-
-        else if(option == 3)
+            break;
+        case 3:
             printStatment(users[UserIndex].account_no);
-        
-        else if(option == 4)
+            break;
+        case 4:
             deposit(users[UserIndex].account_no); 
-
-        else if(option == 5)
+            break;  
+        case 5:
             withdraw(users[UserIndex].account_no, UserIndex);
-
-        else
+            break;
+        default:
             printf("Invalid Option\n");
+            break;
+        }
         
-
     cont_check:
         printf("\nContinue (C)/ Logout(L): ");
         scanf(" %c", &cont);
