@@ -2,6 +2,7 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "*.embeddedhtml": "html",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "bank.h": "c"
     }
 }
