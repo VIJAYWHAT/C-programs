@@ -54,7 +54,7 @@ void login()
             }
             else
             {
-                printf("Password Wrong!\n");
+                printf("Password Wrong!\n\n");
                 TryPass++; // TryPass variable used to count the given wrong passwords 
                 if(TryPass == 4){
                     printf("You have exceeded the number of attempts!!!\n");
@@ -174,7 +174,7 @@ float balanceCheck(int ac_no){ // Function with parameter and return value
     char filename[Length];
     float balance;
 
-    sprintf(filename, "%d.txt",ac_no); // concat the string and int
+    sprintf(filename, "./ac_statements/%d.txt",ac_no); // concat the string and int
 
     fp = fopen(filename, "r"); // open the file and assign the address in fp
 
@@ -207,7 +207,7 @@ void printStatment(int ac_no)
     char filename[Length];
     char statement[MaxLength];
     
-    sprintf(filename, "%d.txt", ac_no);
+    sprintf(filename, "./ac_statements/%d.txt", ac_no);
 
     FILE *st = fopen(filename, "r"); // also we directly open the file in the FILE declaration
     printf("\n");
@@ -307,7 +307,7 @@ bool depositPrint(int ac_no, int amount){
     char filename[55];
     FILE *dp;
 
-    sprintf(filename, "%d.txt", ac_no);
+    sprintf(filename, "./ac_statements/%d.txt", ac_no);
 
     dp = fopen(filename, "a"); // append the file
     if (dp == NULL) {
@@ -328,7 +328,7 @@ bool withdrawPrint(int ac_no, int amount){
     char filename[55];
     FILE *dp;
 
-    sprintf(filename, "%d.txt", ac_no);
+    sprintf(filename, "./ac_statements/%d.txt", ac_no);
 
     dp = fopen(filename, "a"); // append the file
     if (dp == NULL) {
