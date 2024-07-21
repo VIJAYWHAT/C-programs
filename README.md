@@ -1,7 +1,7 @@
 # C-programs
 
 $ git add .
-$ git commit -am 'msg'
+$ git commit -am 'message'
 $ git push
 
 # my creation of C Programs
