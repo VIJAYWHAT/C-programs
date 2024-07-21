@@ -1,9 +1,10 @@
 # C-programs
 
 $ git add .
-$ git commit -am 'vj'
+$ git commit -am 'msg'
 $ git push
-my creation of C Programs
+
+# my creation of C Programs
 
 ## Run the C Program 
 
