@@ -2,7 +2,7 @@
 
 void main(){
 
-    int i,j,k,s,rows,t=1;
+    int i,j,k,s,rows;
 
     printf("Enter the Number of rows: ");
     scanf("%d",&rows);
@@ -14,12 +14,7 @@ void main(){
         s = (i*2) - 1;
 
     for(k=1;k<=s;k++){
-
-        if(t<10)
-            printf(" %d",t);
-        else
-            printf("%d ",t);
-        t++;
+        printf(" *");
     }
     printf("\n\n");
     }
