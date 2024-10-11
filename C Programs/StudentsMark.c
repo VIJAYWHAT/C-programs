@@ -11,7 +11,7 @@ char name[10][10];
 
 int main(){
 
-char sub[] = {"Tamil","English","Maths","Science","Social"};
+char sub[] = {"Tamil", "English", "Maths", "Science", "Social"};
 struct student s1;//object for students;
 int i,a,n,b,k;
 char names[10][50];
@@ -36,12 +36,12 @@ for(i=0;i<n;i++)
     tot_mark[i] = 0;
 
     printf("======================\n");
-    printf("Enter student %d Marks:\n",i+1);
+    printf("Enter student %d Marks: \n",i+1);
     printf("----------------------\n");
 
     for(int j = 0;j<5;j++)
     {
-        printf("Enter %s %s Mark:",s1.name[i],sub[j]);
+        printf("Enter %s %s Mark: ",s1.name[i],sub[j]);
 
         scanf("%d",&marks[i][j]);
         tot_mark[i] += marks[i][j];
@@ -54,11 +54,11 @@ printf("Students List: \n");
 printf("=====================\n");
 
 for(a=0;a<n;a++){
-    printf("Student %d Name:%s",a+1,s1.name[a]);
+    printf("Student %d Name: %s",a+1,s1.name[a]);
     printf("-------------------\n");
     for(b=0;b<5;b++)
     {
-        printf("%s Mark:%d\n",sub[b],marks[a][b]);
+        printf("%s Mark: %d\n",sub[b],marks[a][b]);
 
     }
     printf("-------------------\n");
