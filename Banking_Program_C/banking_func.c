@@ -127,8 +127,9 @@ void userDetails(bool UserLogged, int UserIndex){ // Function with parameter and
 }
 
 void UserOptions(){
-    
-    printf("\n1. Check Bank Balance.\n");
+
+    printf("--- User Menu ---\n");
+    printf("1. Check Bank Balance.\n");
     printf("2. View User Details.\n");
     printf("3. Check account statement\n");
     printf("4. Deposit Money.\n");
