@@ -298,7 +298,7 @@ CashWithdraw:
                 }
         }
         else
-            printf("Deposit cancelled\n");
+            printf("Withdraw cancelled\n");
     }
     else
         printf("Insufficient Balance\n");
